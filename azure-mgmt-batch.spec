@@ -4,7 +4,7 @@
 #
 Name     : azure-mgmt-batch
 Version  : 8.0.0
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/b1/60/d230428f71a0e9f9b172fe145519ea9ae5c5c796f363a4e008b6c87bdfd9/azure-mgmt-batch-8.0.0.zip
 Source0  : https://files.pythonhosted.org/packages/b1/60/d230428f71a0e9f9b172fe145519ea9ae5c5c796f363a4e008b6c87bdfd9/azure-mgmt-batch-8.0.0.zip
 Summary  : Microsoft Azure Batch Management Client Library for Python
@@ -61,7 +61,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588700734
+export SOURCE_DATE_EPOCH=1588788444
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -80,6 +80,9 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## Remove excluded files
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/azure/mgmt/__init__.py
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/azure/mgmt/__pycache__/__init__.cpython-38.pyc
 
 %files
 %defattr(-,root,root,-)
